@@ -12,7 +12,8 @@ end
 
 function M.set_keys()
     vim.g.mapleader = " "
-    map("n", "<Leader>e", ":NvimTreeToggle<CR>")
+    map("n", "<Leader>e", ":NvimTreeToggle<CR>", {silent = true})
+    map("n", "<Leader>c", ":clo<CR>", {silent = true})
 end
 
 

@@ -1,15 +1,15 @@
 local opt = vim.opt
 
-vim.cmd[[
-:set termguicolors
-:set mouse=a
-:set tabstop=4
-:set shiftwidth=4
-:set expandtab 
-:set relativenumber
-:set number
-]]
+opt.termguicolors = true
+opt.mouse = 'a'
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.number = true
+opt.relativenumber = true
 
+
+vim.notify = require("notify")
 require ("plugins")
 require("autocmds")
 require ("keys").set_keys()
@@ -20,4 +20,5 @@ require("config.treesitter").setup()
 require("config.nvim_tree").setup()
 require("config.comment").setup()
 require("config.lualine").setup()
+
 

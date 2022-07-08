@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup() 
+function M.setup()
    local onedark = require('onedark')
 
    onedark.setup({
