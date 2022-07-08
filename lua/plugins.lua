@@ -19,18 +19,23 @@ return require('packer').startup(function ()
     }
     use {
         "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
+        config = function() require("nvim-autopairs").setup({}) end
     }
 
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ':TSUpdate',
+        config = function()
+            require("config.treesitter").setup()
+        end
     }
 
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+
+    use {"hrsh7th/cmp-nvim-lsp"}
 
     use {
         'hrsh7th/nvim-cmp',
@@ -43,9 +48,6 @@ return require('packer').startup(function ()
             {
                 "L3MON4D3/LuaSnip",
                 wants = "friendly-snippets",
-                config = function()
-                    require("config.luasnip").setup()
-                end,
             },
             "rafamadriz/friendly-snippets",
         },
@@ -53,22 +55,10 @@ return require('packer').startup(function ()
             require("config.cmp")
         end,
     }
-    -- use {
-    --     "L3MON4D3/LuaSnip",
-    --     config = function()
-    --         require("luasnip.loaders.from_lua").lazy_load()
-    --         require("luasnip.loaders.from_vscode").lazy_load()
-    --     end
-    -- }    
-    -- use { 'saadparwaiz1/cmp_luasnip' }
-    --
-    -- use "rafamadriz/friendly-snippets"
-    --
 
     use {
         "neovim/nvim-lspconfig",
-        opt = true,
-        event = "BufReadPre",
+        -- opt = true,
         wants = { "nvim-lsp-installer", "lsp_signature.nvim" },
         config = function()
             require("config.lsp").setup()

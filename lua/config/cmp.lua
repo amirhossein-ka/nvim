@@ -26,6 +26,7 @@ local lsp_symbols = {
     TypeParameter = "   (TypeParameter)",
 }
 
+
 local function border(hl_name)
     return {
         { "╭", hl_name },
@@ -64,7 +65,7 @@ cmp.setup({
     sources = {
         -- { name = "vsnip" },
         { name =  "luasnip"},
-        -- { name = "nvim_lsp" },
+        { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "path" },
@@ -84,13 +85,11 @@ cmp.setup({
                 buffer = "[Buffer]",
                 nvim_lsp = "[LSP]",
                 luasnip = "[Snippet]",
-                buffer = "[Buffer]",
                 path = "[Path]"
             })[entry.source.name]
             return item
         end
     },
-    
 })
 
 
