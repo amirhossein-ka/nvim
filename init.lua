@@ -8,11 +8,11 @@ opt.expandtab = true
 opt.number = true
 opt.relativenumber = true
 
-
 vim.notify = require("notify")
-require ("plugins")
+require("plugins")
 require("autocmds")
-require ("keys").set_keys()
+require("keys").set_keys()
+require("config.which_key")
 require('config.transparent').setup()
 require('colorizer').setup()
 require('config.onedark').setup()
@@ -20,5 +20,4 @@ require("config.treesitter").setup()
 require("config.nvim_tree").setup()
 require("config.comment").setup()
 require("config.lualine").setup()
-
-
+require("config.bufferline").setup()

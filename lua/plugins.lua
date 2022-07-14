@@ -1,11 +1,13 @@
+
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    Packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+        install_path })
 end
 
 
-return require('packer').startup(function (use)
+return require('packer').startup(function(use)
     use "wbthomason/packer.nvim"
 
     use 'norcalli/nvim-colorizer.lua'
@@ -42,16 +44,16 @@ return require('packer').startup(function (use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-    use {"hrsh7th/cmp-nvim-lsp"}
+    use { "hrsh7th/cmp-nvim-lsp" }
 
     use {
         'hrsh7th/nvim-cmp',
         wants = "LuaSnip",
         requires = {
-            {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
-            {"hrsh7th/cmp-path",   after = "nvim-cmp"},
-            {"hrsh7th/cmp-cmdline",after = "nvim-cmp"},
-            {"saadparwaiz1/cmp_luasnip"},
+            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+            { "hrsh7th/cmp-path", after = "nvim-cmp" },
+            { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+            { "saadparwaiz1/cmp_luasnip" },
             {
                 "L3MON4D3/LuaSnip",
                 wants = "friendly-snippets",
@@ -82,9 +84,12 @@ return require('packer').startup(function (use)
         "folke/which-key.nvim",
         config = function()
             require("which-key").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
+                plugins = {
+                    spelling = {
+                        enabled = true,
+                        suggestions = 20, -- how many suggestions should be shown in the list?
+                    },
+                }
             }
         end
     }
@@ -96,9 +101,28 @@ return require('packer').startup(function (use)
         end
     }
 
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "v2.*",
+        requires = 'kyazdani42/nvim-web-devicons',
+    }
+
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        config = function()
+            require("config.null-ls").setup()
+        end
+    }
+
+    use {
+        "akinsho/toggleterm.nvim",
+        tag = 'v2.*',
+        config = function()
+            require("toggleterm").setup()
+        end
+    }
 
     if Packer_bootstrap then
         require('packer').sync()
     end
 end)
-
