@@ -8,8 +8,8 @@ opt.expandtab = true
 opt.number = true
 opt.relativenumber = true
 
-vim.notify = require("notify")
 require("plugins")
+vim.notify = require("notify")
 require("autocmds")
 require("keys").set_keys()
 require("config.which_key")
