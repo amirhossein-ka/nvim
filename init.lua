@@ -8,6 +8,10 @@ opt.expandtab = true
 opt.number = true
 opt.relativenumber = true
 
+
+require("notify").setup({
+    background_colour = "#000000"
+})
 vim.notify = require("notify")
 require("plugins")
 require("autocmds")
