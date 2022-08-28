@@ -18,7 +18,10 @@ function M.setup()
             end,
             color_icons = true,
 
-            indicator_icon = '▎',
+            -- indicator_icon = '▎',
+            indicator = {
+                icon = "▎",
+            },
             buffer_close_icon = '',
             modified_icon = '●',
             close_icon = '',

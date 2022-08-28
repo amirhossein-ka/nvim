@@ -3,6 +3,9 @@ local M = {}
 local servers = {
     gopls = {},
     sumneko_lua = {},
+    bashls = {},
+    pyright = {},
+    dockerls = {},
 }
 
 local lsp_signature = require "lsp_signature"

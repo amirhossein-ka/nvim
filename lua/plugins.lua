@@ -1,4 +1,3 @@
-
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -118,7 +117,44 @@ return require('packer').startup(function(use)
         "akinsho/toggleterm.nvim",
         tag = 'v2.*',
         config = function()
-            require("toggleterm").setup()
+            require("config.toggleterm").setup()
+        end
+    }
+
+    use {
+        "NTBBloodbath/rest.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("config.rest").setup()
+        end
+    }
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup({
+                show_current_context = true,
+                show_current_context_start = true,
+            })
+        end
+    }
+
+    use {
+        "andweeb/presence.nvim",
+        config = function()
+            require("presence"):setup({
+                neovim_image_text = "GODLIKE EDITOR"
+            })
+        end
+    }
+
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
+        },
+        config = function()
+            require("config.telescope").setup()
         end
     }
 
