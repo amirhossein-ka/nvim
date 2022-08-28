@@ -9,9 +9,12 @@ end
 return require('packer').startup(function(use)
     use "wbthomason/packer.nvim"
 
+    -- colorize hex number like this 
     use 'norcalli/nvim-colorizer.lua'
 
+    -- onedark theme
     use 'navarasu/onedark.nvim'
+    -- transparent neovim
     use 'xiyaowong/nvim-transparent'
 
     use {
@@ -94,6 +97,7 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- neovim lua autocompletion
         "folke/lua-dev.nvim",
         config = function()
             require("config.lua_dev").setup()
@@ -114,6 +118,7 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- terminal
         "akinsho/toggleterm.nvim",
         tag = 'v2.*',
         config = function()
@@ -122,6 +127,7 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- do rest requests
         "NTBBloodbath/rest.nvim",
         requires = { "nvim-lua/plenary.nvim" },
         config = function()
@@ -139,6 +145,7 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- discord status
         "andweeb/presence.nvim",
         config = function()
             require("presence"):setup({

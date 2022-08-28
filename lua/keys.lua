@@ -33,12 +33,6 @@ function M.set_keys()
     map("n", 'fb', '<cmd>Telescope buffers<CR>')
     map('n', "fh", "<cmd>Telescope help_tags<CR>")
 
-    --[[
-        nnoremap <leader>ff <cmd>Telescope find_files<cr>
-        nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-        nnoremap <leader>fb <cmd>Telescope buffers<cr>
-        nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-     ]]
 end
 
 return M

@@ -6,6 +6,7 @@ local servers = {
     bashls = {},
     pyright = {},
     dockerls = {},
+    marksman = {},
 }
 
 local lsp_signature = require "lsp_signature"
