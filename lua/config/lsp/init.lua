@@ -2,21 +2,12 @@ local M = {}
 
 local servers = {
     gopls = {},
+    -- golangci_lint_ls = {},
     sumneko_lua = {},
     bashls = {},
     pyright = {},
     dockerls = {},
-    marksman = {},
 }
-
-local lsp_signature = require "lsp_signature"
-lsp_signature.setup {
-    bind = true,
-    handler_opts = {
-        border = "rounded",
-    },
-}
-
 local function on_attach(client, bufnr)
     -- Enable completion triggered by <C-X><C-O>
     -- See `:help omnifunc` and `:help ins-completion` for more information.
@@ -28,13 +19,23 @@ local function on_attach(client, bufnr)
 
     -- Configure key mappings
     require("config.lsp.keymaps").setup(client, bufnr)
-end
 
--- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()) -- for nvim-cmp
+
+    -- change lsp float borders
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+        vim.lsp.handlers.hover,
+        { border = 'rounded' }
+    )
+    
+    -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    --     vim.lsp.handlers.signature_help,
+    --     { border = 'rounded' }
+    -- )
+
+end
 
 local opts = {
     on_attach = on_attach,
-    -- capabilities = capabilities, -- for nvim-cmp
     flags = {
         debounce_text_changes = 150,
     },
@@ -45,4 +46,3 @@ function M.setup()
 end
 
 return M
-

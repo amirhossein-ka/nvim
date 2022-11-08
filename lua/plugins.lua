@@ -9,58 +9,71 @@ end
 return require('packer').startup(function(use)
     use "wbthomason/packer.nvim"
 
-    -- colorize hex number like this 
-    use 'norcalli/nvim-colorizer.lua'
+    -- colorize hex number like this #000000
+    use 'git@github.com:norcalli/nvim-colorizer.lua'
 
-    -- onedark theme
-    use 'navarasu/onedark.nvim'
+    use "git@github.com:navarasu/onedark.nvim"
+
+    use {
+        "git@github.com:folke/tokyonight.nvim"
+    }
+
     -- transparent neovim
-    use 'xiyaowong/nvim-transparent'
+    use 'git@github.com:xiyaowong/nvim-transparent'
 
     use {
-        'kyazdani42/nvim-tree.lua',
+        'git@github.com:kyazdani42/nvim-tree.lua',
         requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
+            'git@github.com:kyazdani42/nvim-web-devicons', -- optional, for file icons
         },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    }
-
-    use {
-        'numToStr/Comment.nvim',
-    }
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup({}) end
-    }
-
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = ':TSUpdate',
+        tag = 'nightly', -- optional, updated every week. (see issue #1193)
         config = function()
-            require("config.treesitter").setup()
+            require("config.nvim_tree").setup()
         end
     }
 
     use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        'git@github.com:numToStr/Comment.nvim',
+        config = function()
+            require("config.comment").setup()
+        end
+    }
+    use {
+        "git@github.com:windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup({}) end
     }
 
-    use { "hrsh7th/cmp-nvim-lsp" }
+    use {
+        "git@github.com:nvim-treesitter/nvim-treesitter",
+        --        run = ':TSUpdate',
+        -- config = function()
+        -- require("config.treesitter").setup()
+        -- end
+    }
 
     use {
-        'hrsh7th/nvim-cmp',
+        'git@github.com:nvim-lualine/lualine.nvim',
+        requires = { 'git@github.com:kyazdani42/nvim-web-devicons', opt = true },
+        config = function()
+            require("config.lualine").setup()
+        end
+    }
+
+    use { "git@github.com:hrsh7th/cmp-nvim-lsp" }
+
+    use {
+        'git@github.com:hrsh7th/nvim-cmp',
         wants = "LuaSnip",
         requires = {
-            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-            { "hrsh7th/cmp-path", after = "nvim-cmp" },
-            { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-            { "saadparwaiz1/cmp_luasnip" },
+            { "git@github.com:hrsh7th/cmp-buffer", after = "nvim-cmp" },
+            { "git@github.com:hrsh7th/cmp-path", after = "nvim-cmp" },
+            { "git@github.com:hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+            { "git@github.com:saadparwaiz1/cmp_luasnip" },
             {
-                "L3MON4D3/LuaSnip",
+                "git@github.com:L3MON4D3/LuaSnip",
                 wants = "friendly-snippets",
             },
-            "rafamadriz/friendly-snippets",
+            "git@github.com:rafamadriz/friendly-snippets",
         },
         config = function()
             require("config.cmp")
@@ -68,50 +81,46 @@ return require('packer').startup(function(use)
     }
 
     use {
-        "neovim/nvim-lspconfig",
+        "git@github.com:neovim/nvim-lspconfig",
         -- opt = true,
-        wants = { "nvim-lsp-installer", "lsp_signature.nvim" },
+        wants = { "mason", "mason-lspconfig" },
         config = function()
             require("config.lsp").setup()
         end,
         requires = {
-            "williamboman/nvim-lsp-installer",
-            "ray-x/lsp_signature.nvim",
+            "git@github.com:williamboman/mason-lspconfig.nvim.git",
+            "git@github.com:williamboman/mason.nvim.git"
         },
     }
 
-    use "rcarriga/nvim-notify"
+    use "git@github.com:rcarriga/nvim-notify"
 
     use {
-        "folke/which-key.nvim",
+        "git@github.com:folke/which-key.nvim",
         config = function()
-            require("which-key").setup {
-                plugins = {
-                    spelling = {
-                        enabled = true,
-                        suggestions = 20, -- how many suggestions should be shown in the list?
-                    },
-                }
-            }
+            require("config.which_key")
         end
     }
 
     use {
         -- neovim lua autocompletion
-        "folke/lua-dev.nvim",
+        "git@github.com:folke/neodev.nvim",
         config = function()
             require("config.lua_dev").setup()
         end
     }
 
     use {
-        'akinsho/bufferline.nvim',
+        'git@github.com:akinsho/bufferline.nvim',
         tag = "v2.*",
-        requires = 'kyazdani42/nvim-web-devicons',
+        requires = 'git@github.com:kyazdani42/nvim-web-devicons',
+        config = function()
+            require("config.bufferline").setup()
+        end
     }
 
     use {
-        'jose-elias-alvarez/null-ls.nvim',
+        'git@github.com:jose-elias-alvarez/null-ls.nvim',
         config = function()
             require("config.null-ls").setup()
         end
@@ -119,7 +128,7 @@ return require('packer').startup(function(use)
 
     use {
         -- terminal
-        "akinsho/toggleterm.nvim",
+        "git@github.com:akinsho/toggleterm.nvim",
         tag = 'v2.*',
         config = function()
             require("config.toggleterm").setup()
@@ -128,25 +137,25 @@ return require('packer').startup(function(use)
 
     use {
         -- do rest requests
-        "NTBBloodbath/rest.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
+        "git@github.com:NTBBloodbath/rest.nvim",
+        requires = { "git@github.com:nvim-lua/plenary.nvim" },
         config = function()
             require("config.rest").setup()
         end
     }
     use {
-        "lukas-reineke/indent-blankline.nvim",
+        "git@github.com:lukas-reineke/indent-blankline.nvim",
         config = function()
             require("indent_blankline").setup({
-                show_current_context = true,
-                show_current_context_start = true,
+                -- show_current_context = true,
+                -- show_current_context_start = true,
             })
         end
     }
 
     use {
         -- discord status
-        "andweeb/presence.nvim",
+        "git@github.com:andweeb/presence.nvim",
         config = function()
             require("presence"):setup({
                 neovim_image_text = "GODLIKE EDITOR"
@@ -155,14 +164,18 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        'git@github.com:nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = {
-            { 'nvim-lua/plenary.nvim' },
-            { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
+            { 'git@github.com:nvim-lua/plenary.nvim' },
+            { "git@github.com:nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
         },
         config = function()
             require("config.telescope").setup()
         end
+    }
+
+    use {
+        "git@github.com:mg979/vim-visual-multi.git"
     }
 
     if Packer_bootstrap then

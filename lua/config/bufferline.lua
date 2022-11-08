@@ -28,6 +28,11 @@ function M.setup()
             left_trunc_marker = '',
             right_trunc_marker = '',
 
+            hover = {
+                enabled = true,
+                delay = 100,
+                reveal = { 'close' }
+            }
         },
     })
 end

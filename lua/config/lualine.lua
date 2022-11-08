@@ -9,7 +9,8 @@ function M.setup()
             disabled_filetypes = {"packer", "NvimTree"},
             always_divide_middle = true,
             globalstatus = false,
-            theme = 'onedark',
+            -- theme = 'onedark',
+            theme = 'auto'
         },
         sections = {
             lualine_a = {'mode'},

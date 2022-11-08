@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+    local actions = require("telescope.actions")
     require("telescope").setup({
         defaults = {
             mappings = {

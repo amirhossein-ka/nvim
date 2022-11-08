@@ -71,7 +71,7 @@ cmp.setup({
     },
 
     sources = {
-        { name =  "luasnip"},
+        { name = "luasnip"},
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "nvim_lua" },
@@ -111,10 +111,10 @@ cmp.setup({
         format = function(entry, item)
             item.kind = lsp_symbols[item.kind]
             item.menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                luasnip = "[Snippet]",
-                path = "[Path]"
+                buffer = "[Shits You Wrote]",
+                nvim_lsp = "[Cheat Server]",
+                luasnip = "[SniShit]",
+                path = "[Shits In System]"
             })[entry.source.name]
             return item
         end
