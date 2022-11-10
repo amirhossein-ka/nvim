@@ -12,3 +12,4 @@ Just clone the repo at `$HOME/.config/nvim/`, run neovim and use `:PackerSync`
 
 ![picture](pics/pic1.png)
 ![picture](pics/pic2.png)
+![picture](pics/pic3.jpg)
