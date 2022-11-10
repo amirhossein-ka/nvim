@@ -178,6 +178,12 @@ return require('packer').startup(function(use)
         "git@github.com:mg979/vim-visual-multi.git"
     }
 
+    use {
+        'git@github.com:goolord/alpha-nvim',
+        config = function()
+            require("config.alpha")
+        end
+    }
     if Packer_bootstrap then
         require('packer').sync()
     end
