@@ -2,8 +2,7 @@ local M = {}
 
 local servers = {
     gopls = {},
-    -- golangci_lint_ls = {},
-    sumneko_lua = {},
+    lua_ls = {},
     bashls = {},
     pyright = {},
     dockerls = {},
